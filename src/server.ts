@@ -14,7 +14,7 @@ const start = async () => {
       },
     },
   });
-  console.log(payload);
+
   app.use((req: Request, res: Response) => nextHandler(req, res));
 
   nextApp.prepare().then(() => {

@@ -21,15 +21,12 @@ if (!cached) {
 }
 
 export const getPayloadClient = async ({ initOptions }: Args = {}) => {
-  console.log("working till here");
   if (!process.env.PAYLOAD_SECRET_KEY) {
     throw new Error("PAYLOAD_SECRET_KEY is not defined in .env file");
   }
-  console.log("hello");
   if (cached.client) {
     return cached.client;
   }
-  console.log("hello");
   if (!cached.promise) {
     cached.promise = payload.init({
       secret: process.env.PAYLOAD_SECRET_KEY,
@@ -37,11 +34,9 @@ export const getPayloadClient = async ({ initOptions }: Args = {}) => {
       ...(initOptions || {}),
     });
   }
-  console.log("hello");
 
   try {
     cached.client = await cached.promise;
-    console.log("hi there");
   } catch (error: unknown) {
     cached.promise = null;
     throw error;
